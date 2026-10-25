@@ -1,0 +1,79 @@
+{
+  "background": {
+    "service_worker": "sw.js"
+  },
+  "content_scripts": [
+    {
+      "css": ["content/content.css"],
+      "js": ["lib/match.js", "content/tag.js", "content/content.js"],
+      "matches": [
+        "*://music.yandex.ru/*",
+        "*://*.music.yandex.ru/*",
+        "*://music.yandex.com/*",
+        "*://*.music.yandex.com/*",
+        "*://music.yandex.kz/*",
+        "*://*.music.yandex.kz/*",
+        "*://music.yandex.uz/*",
+        "*://*.music.yandex.uz/*",
+        "*://music.yandex.by/*",
+        "*://*.music.yandex.by/*"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://yandexmusic.pro/*"],
+      "js": ["content/domain.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_icon": "images/icon_128.png",
+    "default_title": "YandexMusic.pro"
+  },
+  "options_page": "options/options.html",
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "128": "images/icon_128.png",
+    "48": "images/icon_48.png",
+    "32": "images/icon_32.png",
+    "16": "images/icon_16.png"
+  },
+  "incognito": "not_allowed",
+  "manifest_version": 3,
+  "minimum_chrome_version": "109",
+  "name": "YandexMusic.pro - Скачать музыку",
+  "short_name": "Яндекс Музыка",
+  "description": "Скачивайте любые треки с Яндекс.Музыка в высоком качестве. Просто и удобно!",
+  "permissions": [
+    "tabs",
+    "storage",
+    "unlimitedStorage",
+    "downloads",
+    "scripting",
+    "nativeMessaging"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "version": "6.0.2",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2bHZWGvhcImmkPfG7dxtERPoJgOlvDZXv0ZTl5nOdkLwdOhJp95XBOhT7u5QrIGEby8AHXNjkmhTBEiBVb9V2hEl8OtPCcmbt1RM/UpDiMaH3iimCOocEga751ZxUSr83tqAqFNdo32VIPEN/7espdhgHtFZ5odyan0iQC0GWj2MwfALe5TVhDWOzsQXvqWo2EjQG111VXs1w377ARA44nNJxNnwsKXiN5T5vg3NLUGFN1i0ao0WLEwSZu9JC8J16R00WT7sSPISX7iVhdkS14jvbQvsf5HMmx9bbCeoH7AxkKKGdC3eMWHGYYF1IbzEKxl2syY22tIAqeeP//aw7QIDAQAB",
+  "web_accessible_resources": [
+    {
+      "resources": ["images/*", "html/share.html"],
+      "matches": [
+        "*://music.yandex.ru/*",
+        "*://*.music.yandex.ru/*",
+        "*://music.yandex.com/*",
+        "*://*.music.yandex.com/*",
+        "*://music.yandex.kz/*",
+        "*://*.music.yandex.kz/*",
+        "*://music.yandex.uz/*",
+        "*://*.music.yandex.uz/*",
+        "*://music.yandex.by/*",
+        "*://*.music.yandex.by/*"
+      ]
+    }
+  ]
+}

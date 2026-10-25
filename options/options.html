@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>YandexMusic.pro — настройки</title>
+  <link rel="stylesheet" href="options.css">
+  <script src="options.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="page-head">
+      <img class="logo" src="../images/icon_48.png" alt="">
+      <div>
+        <h1>YandexMusic.pro</h1>
+        <p class="subtitle">Скачивание музыки и сверка с локальной фонотекой</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Локальная музыка</h2>
+
+      <div class="field">
+        <label for="musicDir">Папка с музыкой</label>
+        <input type="text" id="musicDir" placeholder="%USERPROFILE%\Music\music" spellcheck="false" autocomplete="off">
+      </div>
+
+      <label class="check">
+        <input type="checkbox" id="skipExisting">
+        <span>Не скачивать то, что уже есть на диске</span>
+      </label>
+
+      <div class="field">
+        <label for="formatPolicy">Если трек есть только в MP3</label>
+        <select id="formatPolicy">
+          <option value="upgrade">Докачать FLAC, а MP3 убрать в _replaced_mp3</option>
+          <option value="any">Считать скачанным — MP3 достаточно</option>
+        </select>
+      </div>
+
+      <label class="check">
+        <input type="checkbox" id="autoMove">
+        <span>Перемещать скачанное в папку с музыкой</span>
+      </label>
+
+      <label class="check">
+        <input type="checkbox" id="upgradeCleanup">
+        <span>Убирать MP3 в _replaced_mp3 после скачивания FLAC</span>
+      </label>
+
+      <div class="actions">
+        <button class="btn" id="checkHelper" type="button">Проверить помощника</button>
+        <button class="btn" id="scanFolder" type="button">Обновить список файлов</button>
+        <button class="btn ghost" id="openFolder" type="button">Открыть папку</button>
+      </div>
+
+      <p class="status" id="helperStatus">Помощник ещё не проверялся.</p>
+      <p class="status" id="scanStatus"></p>
+    </section>
+
+    <section class="card">
+      <h2>Формат и теги</h2>
+
+      <div class="grid">
+        <div class="field">
+          <label for="format">Формат</label>
+          <select id="format">
+            <option value="flac">FLAC (без потерь)</option>
+            <option value="mp3">MP3 (сжатый)</option>
+          </select>
+        </div>
+        <div class="field" id="qualityBlock">
+          <label for="quality">Битрейт MP3</label>
+          <select id="quality">
+            <option value="lq">Экономный (192 kbps)</option>
+            <option value="hq">Высокий (320 kbps)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cover">Размер обложки</label>
+          <select id="cover">
+            <option value="400x400">400×400</option>
+            <option value="600x600">600×600</option>
+            <option value="800x800">800×800</option>
+            <option value="1000x1000">1000×1000</option>
+          </select>
+        </div>
+      </div>
+
+      <label class="check">
+        <input type="checkbox" id="tags">
+        <span>Записывать теги (артист, название, альбом, год)</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="position">
+        <span>Добавлять номер трека в имя файла</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="folder">
+        <span>Сохранять в подпапку</span>
+      </label>
+
+      <div class="field" id="pathBlock">
+        <label for="path">Имя подпапки</label>
+        <input type="text" id="path" placeholder="music" spellcheck="false" autocomplete="off">
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Сверка библиотеки</h2>
+      <p class="hint">Сравниваем «Мне нравится», плейлисты и альбомы аккаунта с файлами на диске. Нужна открытая вкладка music.yandex.ru с вашим аккаунтом.</p>
+
+      <div class="checks">
+        <label class="check inline"><input type="checkbox" id="srcLikes"><span>Мне нравится</span></label>
+        <label class="check inline"><input type="checkbox" id="srcPlaylists"><span>Плейлисты</span></label>
+        <label class="check inline"><input type="checkbox" id="srcAlbums"><span>Альбомы</span></label>
+      </div>
+
+      <div class="actions">
+        <button class="btn primary" id="checkLibrary" type="button">Проверить библиотеку</button>
+        <button class="btn ghost" id="openReport" type="button">Открыть отчёт</button>
+      </div>
+
+      <div class="progress"><div class="bar" id="libraryBar"></div></div>
+      <p class="status" id="libraryStatus"></p>
+    </section>
+
+    <footer class="foot">
+      Локальный помощник работает через Node.js и native messaging. Данные никуда не отправляются.
+    </footer>
+  </div>
+</body>
+</html>

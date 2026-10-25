@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>YandexMusic.pro — отчёт по библиотеке</title>
+  <link rel="stylesheet" href="library.css">
+  <script src="../lib/match.js"></script>
+  <script src="library.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="page-head">
+      <img class="logo" src="../images/icon_48.png" alt="">
+      <div class="titles">
+        <h1>Сверка библиотеки</h1>
+        <p class="subtitle" id="subtitle">Загружаем данные…</p>
+      </div>
+      <div class="head-actions">
+        <button class="btn ghost" id="openOptions" type="button">Настройки</button>
+      </div>
+    </header>
+
+    <section class="cards">
+      <div class="card stat"><span class="stat-label">В Яндексе</span><span class="stat-value" id="statLibrary">—</span></div>
+      <div class="card stat ok"><span class="stat-label">Найдено на ПК</span><span class="stat-value" id="statFound">—</span></div>
+      <div class="card stat missing"><span class="stat-label">Не хватает</span><span class="stat-value" id="statMissing">—</span></div>
+      <div class="card stat extra"><span class="stat-label">Лишние файлы</span><span class="stat-value" id="statExtra">—</span></div>
+      <div class="card stat dup"><span class="stat-label">Дубликаты</span><span class="stat-value" id="statDup">—</span></div>
+      <div class="card stat"><span class="stat-label">Файлов в папке</span><span class="stat-value" id="statLocal">—</span></div>
+    </section>
+
+    <section class="card toolbar">
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-filter="missing" type="button">Не хватает <span class="badge" id="badgeMissing">0</span></button>
+        <button class="tab" data-filter="found" type="button">Найдено <span class="badge" id="badgeFound">0</span></button>
+        <button class="tab" data-filter="weak" type="button">Слабые совпадения <span class="badge" id="badgeWeak">0</span></button>
+        <button class="tab" data-filter="extra" type="button">Лишние <span class="badge" id="badgeExtra">0</span></button>
+        <button class="tab" data-filter="duplicates" type="button">Дубликаты <span class="badge" id="badgeDup">0</span></button>
+      </div>
+
+      <div class="tools">
+        <input type="search" id="search" placeholder="Поиск по артисту, названию, альбому, файлу…" autocomplete="off">
+        <button class="btn" id="refreshLocal" type="button">Обновить список файлов</button>
+        <button class="btn" id="refreshLibrary" type="button">Проверить библиотеку</button>
+        <button class="btn ghost" id="exportCsv" type="button">CSV</button>
+        <button class="btn ghost" id="exportJson" type="button">JSON</button>
+      </div>
+
+      <div class="download-row">
+        <button class="btn primary" id="downloadMissing" type="button" disabled>Скачать отсутствующие</button>
+        <button class="btn ghost" id="stopDownloads" type="button" disabled>Остановить</button>
+        <label class="check"><input type="checkbox" id="selectAll"><span>Выбрать всё</span></label>
+        <span class="selection" id="selection">Ничего не выбрано</span>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress"><div class="bar" id="progressBar"></div></div>
+        <p class="status" id="status">Проверка ещё не запускалась.</p>
+      </div>
+    </section>
+
+    <section class="card table-card">
+      <div class="table-scroll">
+        <table id="table">
+          <thead id="thead"></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <p class="table-note" id="tableNote"></p>
+    </section>
+  </div>
+</body>
+</html>
